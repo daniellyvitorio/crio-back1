@@ -19,4 +19,5 @@ public interface EnderecoRepository extends JpaRepository<Endereco, UUID> {
     @Query("SELECT e FROM Endereco e WHERE e.uf = :uf")
     Optional<Usuario> findByUf(String uf);
 
+
 }

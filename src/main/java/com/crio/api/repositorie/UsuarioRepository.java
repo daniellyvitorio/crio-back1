@@ -39,10 +39,10 @@ public interface UsuarioRepository extends
 
     // buscar os usuarios por um determinado tipo
     @Query("SELECT u FROM Usuario u WHERE u.tipo = :tipo")
-    Optional<Usuario> findByEmail(int tipo);
+    Optional<Usuario> findByTipo(int tipo);
 
     //listar todos os usuários cadastrados em um determinado período de tempo
-    @Query("SELECT u FROM Usuario u WHERE u.createdAt BETWEEN :startDate AND :endDate")
-    Optional<Usuario> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
+    @Query("SELECT u FROM Usuario u WHERE u.createdAt BETWEEN :createdAt AND :end")
+    List<Usuario> findByCreatedAtBetween(LocalDateTime createdAt, LocalDateTime end);
 
 }

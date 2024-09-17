@@ -4,10 +4,12 @@ import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.domain.usuario.UsuarioRequestDTO;
 import com.crio.api.repositorie.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -51,4 +53,21 @@ public class UsuarioService {
         Usuario usuario = getUserById(id);
         usuarioRepository.delete(usuario);
     }
+
+    public Optional<Usuario> findByEmail(String email) {
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+        return usuario;
+    }
+
+    public Optional<Usuario> findByTipo(int tipo) {
+        Optional<Usuario> usuario = usuarioRepository.findByTipo(tipo);
+        return usuario;
+    }
+
+    public Optional<Usuario> findByCreatedAt(LocalDateTime createdAt) {
+        Optional<Usuario> usuario = usuarioRepository.findByCreatedAt(createdAt);
+        return  usuario;
+    }
+
+
 }

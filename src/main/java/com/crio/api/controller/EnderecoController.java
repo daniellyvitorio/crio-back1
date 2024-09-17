@@ -2,13 +2,17 @@ package com.crio.api.controller;
 
 import com.crio.api.domain.endereco.Endereco;
 import com.crio.api.domain.endereco.EnderecoRequestDTO;
+import com.crio.api.domain.usuario.Usuario;
+import com.crio.api.repositorie.EnderecoRepository;
 import com.crio.api.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -57,6 +61,18 @@ public class EnderecoController {
     public ResponseEntity<Void> deleteUser(@PathVariable("id")UUID id){
         this.enderecoService.deleteEndereco(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/city/{city}")
+    public ResponseEntity<Optional<Endereco>> findByCreatedAt(@PathVariable String city){
+        Optional<Endereco> endereco = enderecoService.findByCity(city);
+        return  ResponseEntity.ok(endereco);
+    }
+
+    @GetMapping("/uf/{uf}")
+    public ResponseEntity<Optional<Endereco>> findByUf(@PathVariable String uf){
+        Optional<Endereco> endereco = enderecoService.findByUf(uf);
+        return  ResponseEntity.ok(endereco);
     }
 
 }

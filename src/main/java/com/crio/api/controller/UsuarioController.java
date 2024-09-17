@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -62,5 +63,21 @@ public class UsuarioController {
         this.usuarioService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Optional<Usuario>> findByEmail(@PathVariable String email){
+        Optional<Usuario> usuario = usuarioService.findByEmail(email);
+        return  ResponseEntity.ok(usuario);
+    }
 
+    @GetMapping("/tipo/{tipo}")
+    public ResponseEntity<Optional<Usuario>> findByTipo(@PathVariable int tipo){
+        Optional<Usuario> usuario = usuarioService.findByTipo(tipo);
+        return  ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping("/createdAt/{createdAt}")
+    public ResponseEntity<Optional<Usuario>> findByCreatedAt(@PathVariable LocalDateTime createdAt){
+        Optional<Usuario> usuario = usuarioService.findByCreatedAt(createdAt);
+        return  ResponseEntity.ok(usuario);
+    }
 }
