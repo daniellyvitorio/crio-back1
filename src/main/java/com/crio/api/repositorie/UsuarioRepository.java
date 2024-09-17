@@ -1,5 +1,6 @@
 package com.crio.api.repositorie;
 
+import com.crio.api.domain.evento.Evento;
 import com.crio.api.domain.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -31,4 +32,17 @@ public interface UsuarioRepository extends
     //deletar usuario
     @Query("DELETE FROM Usuario u WHERE u.id = :id")
     void deleteByIdUsuario(UUID id);
+
+    //verificar o usuario pelo email
+    @Query("SELECT u FROM Usuario u WHERE u.email = :email")
+    Optional<Usuario> findByEmail(String email);
+
+    // buscar os usuarios por um determinado tipo
+    @Query("SELECT u FROM Usuario u WHERE u.tipo = :tipo")
+    Optional<Usuario> findByEmail(int tipo);
+
+    //listar todos os usuários cadastrados em um determinado período de tempo
+    @Query("SELECT u FROM Usuario u WHERE u.createdAt BETWEEN :startDate AND :endDate")
+    Optional<Usuario> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
+
 }

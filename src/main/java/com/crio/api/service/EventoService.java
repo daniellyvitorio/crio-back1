@@ -80,8 +80,8 @@ public class EventoService {
         return eventoRepository.findByLocal(local);
     }
     public  List<Evento> findByLocalAndIntervaloData(String local,
-                                                     LocalDateTime inico,
+                                                     LocalDateTime inicio,
                                                      LocalDateTime fim){
-        return eventoRepository.findByLocalAndIntervaloData(local, inico, fim);
+        return eventoRepository.findByLocalAndIntervaloData(local, inicio, fim);
     }
 }

@@ -16,15 +16,15 @@ public interface EventoRepository extends
     @Query("SELECT e FROM Evento e WHERE e.usuario.id = :usuarioId")
     List<Evento> findByUsuarioId(UUID usuarioId);
 
-    @Query("SELECT e FROM Evento e WHERE e.inicio BETWEEM: inicio AND :fim")
+    @Query("SELECT e FROM Evento e WHERE e.inicio BETWEEN :inicio AND :fim")
     List<Evento> findByIntervaloData(LocalDateTime inicio, LocalDateTime fim);
 
     @Query("SELECT e FROM Evento e WHERE e.local = :local")
     List<Evento> findByLocal(String local);
 
     //conculta por local e intervalo d data
-    @Query("SELECT e FROM Evento e WHERE e.local = :local AND" +
-            "e.inicio BETWEEN :inicio AND :fim")
+    @Query("SELECT e FROM Evento e WHERE e.local = :local AND"+
+            " e.inicio BETWEEN :inicio AND :fim")
     List<Evento> findByLocalAndIntervaloData(String local,
                                              LocalDateTime inicio,
                                              LocalDateTime fim);
